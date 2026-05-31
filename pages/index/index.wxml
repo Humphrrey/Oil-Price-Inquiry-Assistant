@@ -1,0 +1,137 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+
+<!-- 页面标题 -->
+<view class="header">
+<text class="title">⛽ 国内油价查询</text>
+<text class="subtitle">实时油价 · 覆盖全国</text>
+</view>
+
+<!-- 数据来源提示 -->
+<view class="data-tip" wx:if="{{dataSource}}">
+<text class="tip-text {{dataSource === 'api' ? 'tip-api' : 'tip-local'}}">
+{{dataSource === 'api' ? '📡 实时数据' : '📦 本地缓存（API不可用）'}}
+</text>
+</view>
+
+<!-- 顶部卡片：下次调价倒计时 -->
+<view class="card countdown-card">
+<view class="countdown-header">
+<text class="countdown-title">下次调价窗口</text>
+<text class="countdown-date">{{nextAdjustDate}} 24:00:00</text>
+</view>
+<view class="countdown-timer">
+<text class="countdown-text">距今 {{countdown}}</text>
+</view>
+</view>
+
+<!-- 地区选择 -->
+<view class="card region-card">
+<view class="region-selector">
+<text class="region-label">📍省份</text>
+<picker mode="selector" range="{{regions}}" value="{{provIndex}}" bindchange="onRegionChange">
+<view class="region-picker">
+<text>{{selectedRegion}}</text>
+<text class="arrow">▼</text>
+</view>
+</picker>
+</view>
+</view>
+
+<!-- 当前油价 -->
+<view class="card price-card" wx:if="{{!loading && p92 !== null}}">
+ <view class="price-list">
+
+<view class="price-item">
+<view class="oil-info">
+<text class="oil-icon">💧</text>
+<text class="oil-name">0#柴油</text>
+</view>
+<view class="oil-price-row">
+<text class="price-value">{{p0}}</text>
+<text class="price-unit">元/升</text>
+</view>
+<view class="trend-badge {{changes.p0 > 0 ? 'trend-up' : changes.p0 < 0 ? 'trend-down' : 'trend-flat'}}">
+<text class="trend-arrow">
+{{changes.p0 > 0 ? '↑' : changes.p0 < 0 ? '↓' : '—'}}{{changes.p0 > 0 ? '+' : ''}}{{changes.p0}}元
+</text>
+</view>
+</view>
+
+<view class="price-item">
+<view class="oil-info">
+<text class="oil-icon">💧</text>
+<text class="oil-name">92#汽油</text>
+</view>
+<view class="oil-price-row">
+<text class="price-value">{{p92}}</text>
+<text class="price-unit">元/升</text>
+</view>
+<view class="trend-badge {{changes.p92 > 0 ? 'trend-up' : changes.p92 < 0 ? 'trend-down' : 'trend-flat'}}">
+<text class="trend-arrow">
+{{changes.p92 > 0 ? '↑' : changes.p92 < 0 ? '↓' : '—'}}{{changes.p92 > 0 ? '+' : ''}}{{changes.p92}}元
+</text>
+</view>
+</view>
+
+<view class="price-item">
+<view class="oil-info">
+<text class="oil-icon">💧</text>
+<text class="oil-name">95#汽油</text>
+</view>
+<view class="oil-price-row">
+<text class="price-value">{{p95}}</text>
+<text class="price-unit">元/升</text>
+</view>
+<view class="trend-badge {{changes.p95 > 0 ? 'trend-up' : changes.p95 < 0 ? 'trend-down' : 'trend-flat'}}">
+<text class="trend-arrow">
+{{changes.p95 > 0 ? '↑' : changes.p95 < 0 ? '↓' : '—'}}{{changes.p95 > 0 ? '+' : ''}}{{changes.p95}}元
+</text>
+</view>
+</view>
+
+<view class="price-item">
+<view class="oil-info">
+<text class="oil-icon">💧</text>
+<text class="oil-name">98#汽油</text>
+</view>
+<view class="oil-price-row">
+<text class="price-value">{{p98}}</text>
+<text class="price-unit">元/升</text>
+</view>
+<view class="trend-badge {{changes.p98 > 0 ? 'trend-up' : changes.p98 < 0 ? 'trend-down' : 'trend-flat'}}">
+<text class="trend-arrow">
+{{changes.p98 > 0 ? '↑' : changes.p98 < 0 ? '↓' : '—'}}{{changes.p98 > 0 ? '+' : ''}}{{changes.p98}}元
+</text>
+</view>
+</view>
+
+</view>
+</view>
+
+<!-- 加载状态 -->
+<view class="loading" wx:if="{{loading}}">
+<text>加载中...</text>
+</view>
+
+<!-- 空状态 -->
+<view class="empty" wx:if="{{!loading && p92 === null}}">
+<text class="empty-text">暂无数据，请下拉刷新</text>
+</view>
+
+<!-- 说明 -->
+<view class="card note-card">
+<view class="note-title">💡 说明</view>
+<view class="note-content">
+<text>• 涨跌是与上次查询价格的对比</text>
+<text>• 国内油价每10个工作日调整一次</text>
+<text>• 数据仅供参考，以加油站实际价格为准</text>
+</view>
+</view>
+
+<!-- 更新时间（页面底部） -->
+<view class="update-time" wx:if="{{time}}">
+<text>更新时间：{{time}}</text>
+</view>
+
+</view>

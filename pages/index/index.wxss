@@ -1,0 +1,307 @@
+/* pages/index/index.wxss */
+
+/* ========== 新增：数据来源提示 ========== */
+.data-tip {
+  text-align: center;
+  padding: 16rpx 0 12rpx 0;
+  line-height: 1;
+  }
+  
+  .tip-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20rpx;
+  padding: 8rpx 24rpx;
+  border-radius: 20rpx;
+  line-height: 0.5;
+  vertical-align: middle;
+  } 
+ 
+ .tip-api {
+  color: #52c41a;
+  background: #f6ffed;
+ }
+ 
+ .tip-local {
+  color: #fa8c16;
+  background: #fff7e6;
+ }
+ 
+ /* ========== 原有样式保持不变 ========== */
+ 
+ /* 页面标题 */
+ .header {
+  padding: 16rpx 0 12rpx 0;
+ }
+ 
+ .title {
+  display: block;
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 8rpx;
+  text-align: center;
+ }
+ 
+ .subtitle {
+  display: block;
+  font-size: 26rpx;
+  color: #999;
+  text-align: center;
+ }
+ 
+ /* 油价卡片 */
+ .price-card {
+  padding: 0;
+  overflow: hidden;
+ }
+ 
+ .price-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 32rpx;
+  background: #fafafa;
+  border-bottom: 1rpx solid #e8e8e8;
+ }
+ 
+ .price-date {
+  font-size: 28rpx;
+  color: #666;
+ }
+ 
+ .price-region {
+  font-size: 28rpx;
+  color: #1890ff;
+  font-weight: 500;
+ }
+ 
+ .price-list {
+  padding: 0 32rpx;
+ }
+ 
+ .price-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+ }
+ 
+ .price-item:last-child {
+  border-bottom: none;
+ }
+ 
+ .oil-left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 320rpx;
+  flex-shrink: 0;
+  } 
+  
+  .oil-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 0;
+  min-width: 160rpx;
+  }
+  
+  .oil-icon {
+  font-size: 32rpx;
+  width: 40rpx;
+  flex-shrink: 0;
+  }
+  
+  .oil-name {
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 500;
+  width: 120rpx;
+  flex-shrink: 0;
+  text-align: right;
+  margin-right: 0rpx;
+  } 
+  
+  .oil-price-row {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  flex-shrink: 0;
+  gap: 6rpx;
+  margin-left: 0rpx;
+  } 
+ 
+ .price-value {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #1890ff;
+ }
+ 
+ .price-unit {
+  font-size: 22rpx;
+  color: #999;
+ }
+ 
+ .oil-right {
+  flex-shrink: 0;
+ }
+ 
+ .trend-badge {
+  min-width: 140rpx;
+  padding: 10rpx 18rpx;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+ 
+ .trend-arrow {
+  font-size: 26rpx;
+  font-weight: bold;
+  line-height: 1;
+  white-space: nowrap;
+ }
+ 
+ .trend-up {
+  background: #fff1f0;
+ }
+ 
+ .trend-up .trend-arrow {
+  color: #f5222d;
+ }
+ 
+ .trend-down {
+  background: #f6ffed;
+ }
+ 
+ .trend-down .trend-arrow {
+  color: #52c41a;
+ }
+ 
+ .trend-flat {
+  background: #f5f5f5;
+ }
+ 
+ .trend-flat .trend-arrow {
+  color: #999;
+ }
+ 
+ /* 地区选择 */
+ .region-card {
+  padding: 24rpx 32rpx;
+  }
+  
+  .region-selector {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8rpx;
+  width: 100%;
+  box-sizing: border-box;
+  }
+  
+  .region-label {
+  font-size: 28rpx;
+  color: #666;
+  }
+  
+  .region-picker {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  padding: 16rpx 32rpx;
+  background: #f5f5f5;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  color: #1890ff;
+  } 
+ 
+ .arrow {
+  font-size: 20rpx;
+  opacity: 0.6;
+ }
+ 
+ /* 顶部卡片：下次调价倒计时 */
+ .countdown-card {
+  background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+  color: #ffffff;
+  padding: 20rpx 28rpx;
+ }
+ 
+ .countdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+ }
+ 
+ .countdown-title {
+  font-size: 24rpx;
+  opacity: 0.9;
+ }
+ 
+ .countdown-date {
+  font-size: 26rpx;
+  color: #ff4d4f;
+  opacity: 1;
+  } 
+ 
+ .countdown-timer {
+  text-align: center;
+  padding: 12rpx 0;
+ }
+ 
+ .countdown-text {
+  font-size: 40rpx;
+  font-weight: 700;
+  letter-spacing: 4rpx;
+ }
+ 
+ /* 说明卡片 */
+ .note-card {
+  background: #fffbe6;
+  border: 1rpx solid #ffe58f;
+ }
+ 
+ .note-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #d48806;
+  margin-bottom: 16rpx;
+ }
+ 
+ .note-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+ }
+ 
+ .note-content text {
+  font-size: 24rpx;
+  color: #ad8b00;
+  line-height: 1.6;
+ }
+ 
+ /* 底部更新时间 */
+ .update-time {
+  padding: 20rpx 0;
+  text-align: center;
+ }
+ 
+ .update-time text {
+  font-size: 26rpx;
+  color: #999;
+ }
+ 
+ /* 加载/空状态 */
+ .loading,
+ .empty {
+  padding: 80rpx 0;
+  text-align: center;
+  color: #999;
+  font-size: 28rpx;
+ }
+ 

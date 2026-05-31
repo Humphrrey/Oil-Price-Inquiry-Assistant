@@ -1,0 +1,91 @@
+<!-- pages/estimate/estimate.wxml - 花费估算 -->
+<view class="container">
+
+<!-- 页面标题 -->
+<view class="header">
+  <text class="title">💹 油费估算</text>
+  <text class="subtitle">根据油价和油耗计算出行花费</text>
+</view>
+
+<!-- 当前油价参考 -->
+<view class="card price-ref-card" wx:if="{{price}}">
+  <view class="price-ref-row">
+    <text class="price-ref-label">{{fuelTypeName}} 当前价格</text>
+    <text class="price-ref-value">{{price}} 元/升</text>
+  </view>
+  <text class="price-ref-tip" wx:if="{{dataSource === 'local'}}">📦 本地缓存数据</text>
+</view>
+<view class="card price-ref-card" wx:if="{{!price}}">
+  <text class="price-ref-loading">正在获取油价...</text>
+</view>
+
+<!-- 输入表单 -->
+<view class="card form-card">
+
+  <!-- 油品选择 -->
+  <view class="form-item">
+    <text class="form-label">油品类型</text>
+    <picker mode="selector" range="{{fuelTypes}}" value="{{fuelTypeIndex}}" range-key="label" bindchange="onFuelTypeChange">
+      <view class="form-picker">
+        <text>{{fuelTypeName}}</text>
+        <text class="arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 行驶里程 -->
+  <view class="form-item">
+    <text class="form-label">行驶里程 (km)</text>
+    <input class="form-input" type="digit" placeholder="请输入公里数" value="{{distance}}" bindinput="onDistanceInput" />
+  </view>
+
+  <!-- 百公里油耗 -->
+  <view class="form-item">
+    <text class="form-label">百公里油耗 (L)</text>
+    <input class="form-input" type="digit" placeholder="请输入油耗，如 7.5" value="{{consumption}}" bindinput="onConsumptionInput" />
+  </view>
+
+</view>
+
+<!-- 操作按钮 -->
+<view class="btn-group">
+  <button class="btn-clear" bindtap="onClear">清空</button>
+  <button class="btn-calc" bindtap="onCalc">计算</button>
+</view>
+
+<!-- 计算结果 -->
+<view class="card result-card" wx:if="{{result}}">
+  <view class="result-title">💰 估算结果</view>
+
+  <view class="result-row">
+    <text class="result-label">总油耗</text>
+    <text class="result-value">{{result.fuelUsed}} 升</text>
+  </view>
+
+  <view class="result-row result-row-highlight">
+    <text class="result-label">总花费</text>
+    <text class="result-value result-cost">¥ {{result.totalCost}}</text>
+  </view>
+
+  <view class="result-row">
+    <text class="result-label">百公里花费</text>
+    <text class="result-value">¥ {{result.costPerHundred}}</text>
+  </view>
+
+  <view class="result-row">
+    <text class="result-label">每公里花费</text>
+    <text class="result-value">¥ {{result.costPerKm}}</text>
+  </view>
+</view>
+
+<!-- 说明 -->
+<view class="card note-card">
+  <view class="note-title">💡 说明</view>
+  <view class="note-content">
+    <text>• 总花费 = 油耗量 × 当前油价</text>
+    <text>• 油耗量 = (里程 / 100) × 百公里油耗</text>
+    <text>• 实际花费可能因路况、驾驶习惯不同有所差异</text>
+  </view>
+</view>
+
+</view>
